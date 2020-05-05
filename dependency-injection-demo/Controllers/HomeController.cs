@@ -31,7 +31,7 @@ namespace dependency_injection_demo.Controllers
             var model = new HomepageViewModel();
             model.applicationSettings = _applicationSettings;
             model.config = _config;
-            return View(model);
+            return View("Index", model);
         }
 
         public IActionResult Privacy()
