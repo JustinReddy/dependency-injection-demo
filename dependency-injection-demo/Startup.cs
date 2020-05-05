@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using dependency_injection_demo.Middleware.Config;
+using dependency_injection_demo.Services.SampleService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace dependency_injection_demo
             Console.WriteLine($"Executing on {Configuration["EnvironmentName"]} Version {Configuration["ApplicationInfo:Version"]}");
 
             services.Configure<ApplicationSettings>(Configuration);
+            services.AddTransient<ISampleService, SampleService>();
             services.AddControllersWithViews();
         }
 

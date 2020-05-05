@@ -46,7 +46,17 @@ namespace dependency_injection_demo.tests
         {
             var homecontroller = new HomeController(_logger, _config, _applicationSettings);
             var actionresult = homecontroller.Index() as ViewResult;
+            Assert.IsNotNull(actionresult);
             Assert.That(actionresult.ViewName, Is.EqualTo("Index"));
+        }
+
+        [Test]
+        public void TestHomeControllerInjectServiceInView()
+        {
+            var homecontroller = new HomeController(_logger, _config, _applicationSettings);
+            var actionresult = homecontroller.InjectServiceInView() as ViewResult;
+            Assert.IsNotNull(actionresult);
+            Assert.That(actionresult.ViewName, Is.EqualTo("InjectServiceInView"));
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using dependency_injection_demo.Models;
@@ -37,6 +33,11 @@ namespace dependency_injection_demo.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult InjectServiceInView()
+        {
+            return View("InjectServiceInView");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

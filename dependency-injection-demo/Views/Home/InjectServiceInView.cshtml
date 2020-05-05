@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Inject Service In View";
+}
+@using Microsoft.Extensions.Configuration;
+@using dependency_injection_demo.Services.SampleService;
+@inject ISampleService  sampleservice
+
+<div class="text-center">
+    <h1 class="display-4">Inject a service within a View</h1>
+    <p>The Following Text was populated by calling a method in a service that was Injected through the Microsoft Dependency Injection Container</p>
+    <p class="alert-info">@sampleservice.GetServiceInformation()</p>
+
+</div>
+
+
