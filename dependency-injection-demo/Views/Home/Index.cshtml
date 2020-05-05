@@ -1,8 +1,53 @@
-﻿@{
+﻿@model HomepageViewModel
+@{
     ViewData["Dependency Injection"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>This Demo is about using Dependency Injection in .Net Core Web Applications.</p>
+    <p>
+        <table class="table text-left">
+            <thead class="thead-light">
+                <tr>
+                    <th>Custom Configuration Information Loaded from IOptions<></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-table-row">
+                    <td>Environment Name</td>
+                    <td>@Html.DisplayFor(m => m.applicationSettings.EnvironmentName)</td>
+                </tr>
+                <tr class="d-table-row">
+                    <td>Version</td>
+                    <td>@Html.DisplayFor(m => m.applicationSettings.ApplicationInfo.Version)</td>
+                </tr>
+                <tr class="d-table-row">
+                    <td>Description</td>
+                    <td>@Html.DisplayFor(m => m.applicationSettings.ApplicationInfo.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+
+    <p>
+        <table class="table table-responsive text-left">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Environmment Configuration Information Loaded IConfiguration</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var env in Model.config.GetChildren())
+                {
+                    <tr class="d-table-row">
+                        <td>@env.Key</td>
+                        <td>@env.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </p>
 </div>
