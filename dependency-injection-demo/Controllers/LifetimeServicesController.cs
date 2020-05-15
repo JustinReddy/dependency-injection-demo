@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using dependency_injection_demo.Middleware.Config;
 using dependency_injection_demo.Models;
 using dependency_injection_demo.Services.LifetimeServices;
+using dependency_injection_demo.Services.SampleService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -34,11 +35,18 @@ namespace dependency_injection_demo.Controllers
 
         public IActionResult Index()
         {
-            var model = new LifetimeTestModel();
+            var model = new LifetimeTestViewModel();
             model.TransientDescription = _sampleTransientService.GetServiceInformation();
             model.SingletonDescription = _sampleSingletonService.GetServiceInformation();
             model.ScopedDescription = _sampleScopedService.GetServiceInformation();
             return View("Index", model);
+        }
+
+        public IActionResult GetSampleService([FromServices] ISampleService sampleservice)
+        {
+            var model = new LifetimeTestViewModel();
+            model.TransientDescription = _sampleTransientService.GetServiceInformation();
+            return View("GetSampleService", model);
         }
     }
 }

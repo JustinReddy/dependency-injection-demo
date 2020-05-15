@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace dependency_injection_demo.Models
 {
-    public class LifetimeTestModel
+    public class LifetimeTestViewModel
     {
         public string TransientDescription { get; set; }
         public string ScopedDescription { get; set; }

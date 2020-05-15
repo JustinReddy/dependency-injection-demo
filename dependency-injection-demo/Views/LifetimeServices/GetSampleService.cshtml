@@ -1,0 +1,18 @@
+﻿
+@model LifetimeTestViewModel;
+@{
+    ViewData["Dependency Injection"] = "Activator Service";
+}
+
+<h1>Use Activator to Inject a service</h1>
+<p>
+    Sometimes it is not necessary to Inject a service in the Constructor because it may not be used that often (ie. in all the actions) and you can avoid the overhead of
+    Injecting this service everytime a request is sent to the Controller and the Controller needs to be Instatiated.
+</p>
+
+<div class="text-center">
+    <p>The Following Text was populated by calling a method in a service that was Injected using the Activator in the Controller instead of Controller Injection.</p>
+    <p class="alert-primary">@Model.TransientDescription</p>
+
+</div>
+

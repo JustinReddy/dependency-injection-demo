@@ -1,4 +1,4 @@
-﻿@model LifetimeTestModel;
+﻿@model LifetimeTestViewModel;
 @{
     ViewData["Dependency Injection"] = "Service Lifetime";
 }
@@ -46,6 +46,16 @@
                 <p>The value will live through the duration of the Http Request as an instance of the service is created and lives through the Scope of the Request. This Service type is the middle ground between Transient and Singleton</p>
                 <p>@Html.ActionLink("Click to Invoke Service Again", "Index", "LifetimeServices", null, new { @class = "btn btn-info" })</p>
                 <p class="alert-info">@Model.ScopedDescription</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h2 class="display-4">Activator Utility</h2>
+                <p class="alert-primary">
+                    IActionResult GetSampleService([FromServices] ISampleService sampleservice)
+                </p>
+                <p>The Action in the Controller will get the Service Instance from ServiceCollection and populate the View Model.</p>
+                <p>@Html.ActionLink("Click to Redirect to different Action in this Controller", "GetSampleService", "LifetimeServices", null, new { @class = "btn btn-primary" })</p>
             </td>
         </tr>
     </tbody>

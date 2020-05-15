@@ -1,6 +1,7 @@
 ﻿using dependency_injection_demo.Controllers;
 using dependency_injection_demo.Middleware.Config;
 using dependency_injection_demo.Services.LifetimeServices;
+using dependency_injection_demo.Services.SampleService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -40,7 +41,7 @@ namespace dependency_injection_demo.tests
         }
 
         [Test]
-        public void TestHomeControllerIndex()
+        public void TestLifetimeServicesControllerIndex()
         {
             var sampleTransientService = new Mock<ISampleTransientService>();
             var sampleSingletonService = new Mock<ISampleSingletonService>();
@@ -49,6 +50,19 @@ namespace dependency_injection_demo.tests
             var actionresult = lifetimeServicesController.Index() as ViewResult;
             Assert.IsNotNull(actionresult);
             Assert.That(actionresult.ViewName, Is.EqualTo("Index"));
+        }
+
+        [Test]
+        public void TestLifetimeServicesControllerGetSampleService()
+        {
+            var sampleTransientService = new Mock<ISampleTransientService>();
+            var sampleSingletonService = new Mock<ISampleSingletonService>();
+            var sampleScopedService = new Mock<ISampleScopedService>(); 
+            var sampleActivatorService = new Mock<ISampleService>();
+            var lifetimeServicesController = new LifetimeServicesController(_logger, _config, _applicationSettings, sampleTransientService.Object, sampleSingletonService.Object, sampleScopedService.Object);
+            var actionresult = lifetimeServicesController.GetSampleService(sampleActivatorService.Object) as ViewResult;
+            Assert.IsNotNull(actionresult);
+            Assert.That(actionresult.ViewName, Is.EqualTo("GetSampleService"));
         }
     }
 }
