@@ -1,0 +1,52 @@
+﻿@model LifetimeTestModel;
+@{
+    ViewData["Dependency Injection"] = "Service Lifetime";
+}
+
+
+
+<table class="table text-left">
+    <thead class="thead-light">
+        <tr>
+            <th>Service Lifetime (Transient, Scoped and Singleton)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="d-table-row">
+            <td class="text-left">
+                <h2 class="display-4">Transient</h2>
+                <p class="alert-success">
+                    services.AddTransient<ISampleTransientService, SampleTransientService>();
+                </p>
+                <p>The Following Text was populated by calling a method in a <b>TRANSIENT</b> service.</p>
+                <p>The value will change everytime a Consumer Request comes in due to a new instance of the Service being created each time (Performance Cost to the Garbage Collector)</p>
+                <p>@Html.ActionLink("Click to Invoke Service Again", "Index", "LifetimeServices", null, new { @class = "btn btn-success" })</p>
+                <p class="alert-success">@Model.TransientDescription</p>
+            </td>
+
+            <td class="text-left">
+                <h2 class="display-4">Singleton</h2>
+                <p class="alert-warning">
+                    services.AddSingleton<ISampleSingletonService, SampleSingletonService>();
+                </p>
+                <p>The Following Text was populated by calling a method in a <b>SINGLETON</b> service.</p>
+                <p>The value will <b>NOT</b> change everytime a Consumer Request comes in due to the re-use of a single instance of the Service. You can open multiple Browser Tabs incognito and see that the same response for this service call is shared accross Browser Tabs.</p>
+                <p>@Html.ActionLink("Click to Invoke Service Again", "Index", "LifetimeServices", null, new { @class = "btn btn-warning" })</p>
+                <p class="alert-warning">@Model.SingletonDescription</p>
+            </td>
+
+
+            <td class="text-left">
+                <h2 class="display-4">Scoped</h2>
+                <p class="alert-info">
+                    services.AddScoped<ISampleScopedService, SampleScopedService>();
+                </p>
+                <p>The Following Text was populated by calling a method in a <b>SCOPED</b> service.</p>
+                <p>The value will live through the duration of the Http Request as an instance of the service is created and lives through the Scope of the Request. This Service type is the middle ground between Transient and Singleton</p>
+                <p>@Html.ActionLink("Click to Invoke Service Again", "Index", "LifetimeServices", null, new { @class = "btn btn-info" })</p>
+                <p class="alert-info">@Model.ScopedDescription</p>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using dependency_injection_demo.Middleware.Config;
+using dependency_injection_demo.Services.LifetimeServices;
 using dependency_injection_demo.Services.SampleService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,11 @@ namespace dependency_injection_demo
 
             services.Configure<ApplicationSettings>(Configuration);
             services.AddTransient<ISampleService, SampleService>();
+
+            services.AddTransient<ISampleTransientService, SampleTransientService>();
+            services.AddScoped<ISampleScopedService, SampleScopedService>();
+            services.AddSingleton<ISampleSingletonService, SampleSingletonService>();
+
             services.AddControllersWithViews();
         }
 

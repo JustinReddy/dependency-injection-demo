@@ -7,7 +7,8 @@ namespace dependency_injection_demo.Models
 {
     public class LifetimeTestModel
     {
-        public Guid id { get; set; }
-        public string description { get; set; }
+        public string TransientDescription { get; set; }
+        public string ScopedDescription { get; set; }
+        public string SingletonDescription { get; set; }
     }
 }
