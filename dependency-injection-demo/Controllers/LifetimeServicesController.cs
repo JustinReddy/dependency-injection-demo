@@ -15,14 +15,14 @@ namespace dependency_injection_demo.Controllers
 
     public class LifetimeServicesController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<LifetimeServicesController> _logger;
         private readonly IConfiguration _config;
         private readonly ApplicationSettings _applicationSettings;
         private readonly ISampleTransientService _sampleTransientService;
         private readonly ISampleSingletonService _sampleSingletonService;
         private readonly ISampleScopedService _sampleScopedService;
 
-        public LifetimeServicesController(ILogger<HomeController> logger, IConfiguration Configuration, IOptions<ApplicationSettings> applicationSettings, ISampleTransientService sampleTransientService, ISampleSingletonService sampleSingletonService, ISampleScopedService sampleScopedService)
+        public LifetimeServicesController(ILogger<LifetimeServicesController> logger, IConfiguration Configuration, IOptions<ApplicationSettings> applicationSettings, ISampleTransientService sampleTransientService, ISampleSingletonService sampleSingletonService, ISampleScopedService sampleScopedService)
         {
             _logger = logger;
             _config = Configuration;
