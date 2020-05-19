@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dependency-injection-demo", "dependency-injection-demo\dependency-injection-demo.csproj", "{2C8C892C-A94E-49AC-8091-CE51AA3158CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dependency-injection-demo.tests", "dependency-injection-demo.tests\dependency-injection-demo.tests.csproj", "{D37539A3-81A2-44C5-A07F-BB301296AA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dependency-injection-demo.tests", "dependency-injection-demo.tests\dependency-injection-demo.tests.csproj", "{D37539A3-81A2-44C5-A07F-BB301296AA96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ECA2AE8A-7ED5-435C-8BEF-277BF193C43A}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

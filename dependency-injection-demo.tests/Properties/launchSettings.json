@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dependency-injection-demo.tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

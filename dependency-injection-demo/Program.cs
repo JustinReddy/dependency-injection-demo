@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,18 +30,26 @@ namespace dependency_injection_demo
                 var env = hostingContext.HostingEnvironment;
 
                 config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                      .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                
+                      .AddJsonFile($"appsettings.{env.EnvironmentName.ToLower()}.json", optional: true, reloadOnChange: true);
+
                 config.AddEnvironmentVariables();
 
                 if (args != null)
                 {
                     config.AddCommandLine(args);
                 }
-            })
+            })            
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>();
+                webBuilder.UseContentRoot(Directory.GetCurrentDirectory()).UseIISIntegration().UseUrls("http://0.0.0.0:5000").ConfigureKestrel(serverOptions =>
+                {
+                    // Use IPAddress.Any to get passed the IPV6 Binding error
+                    serverOptions.Listen(IPAddress.Any, 5000, listenOptions =>
+                    {
+                        listenOptions.UseConnectionLogging();
+                    });
+                })
+            .UseStartup<Startup>();
             });
     }
 }
